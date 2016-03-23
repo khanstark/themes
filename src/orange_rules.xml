@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <!-- Apply the following rules to standard Plone pages -->
+    <rules css:if-content="#visual-portal-wrapper">
+
+        <theme href="index.html" />
+        <!--searchbox-->
+        <copy attributes="action" css:content='#portal-searchbox form' css:theme="#keyword" />
+    <drop attributes="value" css:theme="#keyword" />
+    <copy attributes="*" css:content='#searchGadget' css:theme="#keyword" />
+    
+        <!--logo-->
+        
+        <replace css:content='#portal-logo' css:theme="#logo" />
+
+        
+        <!-- Replace title with Plone's page title  -->
+        <replace css:theme="html head title" css:content="html head title" />
+
+        <!-- Copy base tag from Plone -->
+        <before css:theme-children="html head" css:content="html head base" />
+
+        <!-- Copy link, style, meta tags from Plone head -->
+        <after css:theme-children="html head"
+               content="/html/head/link | /html/head/style | /html/head/meta" />
+
+        <!-- merge classes from Plone body with theme body -->
+        <merge attributes="class" css:theme="body" css:content="body" />
+
+        <!-- Copy script tags from Plone head to end of body -->
+        <after css:theme-children="html body" css:content="html head script" />
+
+        <replace css:content="#portal-globalnav li" css:theme-children="#navigation" />
+        
+        <drop css:theme="#slider-wrapper" />
+        
+        <before css:content="#viewlet-above-content" css:theme="#tooplate_main" />
+    <before css:content="#edit-bar" css:theme="#tooplate_main" />
+    <before css:content=".portalMessage" css:theme="#tooplate_main" />
+    <replace css:content-children="#content" css:theme-children="#tooplate_main" />
+    <after css:content="#viewlet-below-content" css:theme="#tooplate_main" />
+    
+    <replace
+        css:theme="p#mid_text"
+        css:content="p.discreet"
+        />
+
+    <replace
+        css:theme="div#mid_title"
+        css:content="h1.documentFirstHeading"
+        />
+
+<replace
+    css:theme="div#tooplate_footer"
+    css:content="section.portletContent ul"
+    />
+
+<replace
+    css:theme="div#tooplate_cr_bar"
+    css:content="section#portal-colophon div.portletContent a"
+    />
+    </rules>
+
+</rules>
